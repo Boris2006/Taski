@@ -76,9 +76,9 @@ jobs:
           # Одновременный билд и пуш образа в Docker Hub
           uses: docker/build-push-action@v4
           with:
-            # Параметр context: ./kittygram_backend/ указывает, что нужный Dockerfile
-            # находится в ./kittygram_backend/
-            context: ./kittygram_backend/
+            # Параметр context: ./backend/ указывает, что нужный Dockerfile
+            # находится в ./backend/
+            context: ./backend/
             # Параметр push: true указывает, что образ нужно не только собрать,
             # но и отправить на Docker Hub
             push: true
