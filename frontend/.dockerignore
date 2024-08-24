@@ -1,2 +1,6 @@
+<<<<<<< HEAD
+=======
+# frontend/.dockerignore
+>>>>>>> a600d27cddde49ba7604ec1c87be17e52fd86efc
 node_modules
 build
