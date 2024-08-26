@@ -1,9 +1,9 @@
-# Версия docker-compose
 version: '3'
 
-# Перечень volume
 volumes:
   pg_data:
+  # Новый volume — для статических файлов
+  static:
 
 # Перечень контейнеров
 services:
@@ -16,8 +16,7 @@ services:
     env_file: .env
     # Какой volume подключить для этого контейнера
     volumes:
-      - pg_data:/var/lib/postgresql/data
-  # Имя и описание контейнера с бэкендом
+      - pg_data:/var/lib/postgresql/data      
   backend:
     # Из какого Dockerfile собирать образ для этого контейнера:
     build: ./backend/
@@ -25,11 +24,13 @@ services:
     # Какие контейнеры нужно запустить до старта этого контейнера:
     depends_on:
       - db
+    # Тут подключаем volume к backend
+    volumes:
+      - static:/backend_static
   # Имя третьего контейнера. Это контейнер с фронтендом
   frontend:
     env_file: .env
     build: ./frontend/
-# Добавляем новый контейнер: gateway.
   gateway:
     # Сбилдить и запустить образ, 
     # описанный в Dockerfile в папке gateway
@@ -37,5 +38,7 @@ services:
     # Ключ ports устанавливает
     # перенаправление всех запросов с порта 8000 хоста
     # на порт 80 контейнера.
+    volumes:
+      - static:/staticfiles/
     ports:
       - 8000:80
