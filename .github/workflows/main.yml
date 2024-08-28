@@ -9,7 +9,6 @@ jobs:
   tests:
     # Разворачиваем окружение:
     runs-on: ubuntu-latest
-    # Блок services аналогичен docker-compose.yml
     services:
       postgres:
         image: postgres:13.10
