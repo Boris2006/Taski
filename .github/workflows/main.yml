@@ -128,4 +128,4 @@ jobs:
         with:
           context: ./frontend/
           push: true
-          tags: bvv2003/taski_frontend:latest
+          tags: bvv20003/taski_frontend:latest
